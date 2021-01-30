@@ -2,7 +2,6 @@ from tkinter import *
 import numpy as np
 import random
 
-
 # neighborhood
 neighborhood = 0
 
@@ -43,6 +42,12 @@ for row in range(startSize):
     grid.append([])
     for column in range(startSize):
         grid[row].append('#FFFFFF')
+
+subGrid = []
+for row in range(startSize):
+    subGrid.append([])
+    for column in range(startSize):
+        subGrid[row].append('#FFFFFF')
 
 newGrid = []
 for row in range(startSize):
@@ -377,7 +382,6 @@ class Application(Frame):
                                     max = c
                                     maxColor = v
 
-
                         if max >= 5:
                             newGrid[i][j] = maxColor
                             drawRectangle(i, j, maxColor)
@@ -389,14 +393,12 @@ class Application(Frame):
                                 newGrid[i][j] = maxColor
                                 drawRectangle(i, j, maxColor)
 
-
                         if max >= 3:
                             if colorTab[0] == colorTab[2] == colorTab[6] or colorTab[0] == colorTab[2] == colorTab[
                                 8] or colorTab[0] == colorTab[6] == colorTab[8] or colorTab[2] == colorTab[6] == \
                                     colorTab[8]:
                                 newGrid[i][j] = maxColor
                                 drawRectangle(i, j, maxColor)
-
 
                         if maxColor:
                             probability = 10
@@ -409,14 +411,12 @@ class Application(Frame):
                 for j in range(gridSize):
                     grid[i][j] = newGrid[i][j]
 
-
         def shape():
             for i in range(gridSize):
                 for j in range(gridSize):
                     while grid[i][j] == '#FFFFFF':
                         shapeControl()
                         c.update()
-
 
         def substructure():
             for i in range(gridSize):
@@ -425,7 +425,7 @@ class Application(Frame):
 
             for i in range(gridSize):
                 for j in range(gridSize):
-                    if grid[i][j] not in changeColorVal:
+                    if grid[i][j] in changeColorVal:
                         newGrid[i][j] = '#FFFFFF'
                         drawRectangle(i, j, '#FFFFFF')
 
@@ -681,8 +681,8 @@ class Application(Frame):
         menubar.add_cascade(label="File", menu=file)
 
         # shape control button
-        #shapeControlButton = Button(Frame1, text="ShapeControl", command=shapeControl)
-        #shapeControlButton.place(x=20, y=400)
+        # shapeControlButton = Button(Frame1, text="ShapeControl", command=shapeControl)
+        # shapeControlButton.place(x=20, y=400)
 
         # grain selection
         grainSelectionButton = Button(Frame1, text="Substructure", command=substructure)
